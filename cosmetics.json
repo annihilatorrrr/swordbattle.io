@@ -182,13 +182,7 @@
             "price": 200000,
             "description": "AI-Assisted Stabbing"
         },
-        {
-            "name": "scorpion",
-            "displayName": "Scorpion",
-            "url": "/assets/images/scorpionPlayer.png",
-            "price": 2500000,
-            "description": "Poisoned wounds are the worst..."
-        },
+        
         {
             "name": "devex",
             "displayName": "Dev3x",
@@ -239,6 +233,13 @@
             "description": "Very sweet!"
         },
         {
+            "name": "storm",
+            "displayName": "Storm",
+            "url": "/assets/images/stormPlayer.png",
+            "price": 1250000,
+            "description": "A storm is brewing"
+        },
+        {
             "name": "cookie",
             "displayName": "Cookie",
             "url": "/assets/images/cookiePlayer.png",
@@ -253,11 +254,11 @@
             "description": "\"Buy channel membership only $3!!!!\""
         },
         {
-            "name": "storm",
-            "displayName": "Storm",
-            "url": "/assets/images/stormPlayer.png",
-            "price": 1250000,
-            "description": "A storm is brewing"
+            "name": "scorpion",
+            "displayName": "Scorpion",
+            "url": "/assets/images/scorpionPlayer.png",
+            "price": 2500000,
+            "description": "Poisoned wounds are the worst..."
         },
         {
             "name": "scythe",
