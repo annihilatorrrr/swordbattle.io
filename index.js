@@ -72,7 +72,7 @@ const moderation = require("./moderation");
 const { v4: uuidv4 } = require("uuid");
 
  var {recaptcha} = require("./config.json");
-console.log("Recaptcha "+(recaptcha?"enabled":"disabled"))
+console.log("Recaptcha "+(recaptcha?"enabled":"disabled"));
 
 
 var passwordValidator = require("password-validator");
