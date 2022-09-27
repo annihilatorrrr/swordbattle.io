@@ -989,7 +989,7 @@ io.on("connection", async (socket) => {
 	socket.on( "ping", function ( fn ) {
 		fn(); // Simply execute the callback on the client
 	} );
-	socket.on("chat", (msg) => {
+	socket.on("chat", async (msg) => {
 		msg = msg.trim().replace(/\\/g, "\\\\");
 		if (msg.length > 0) {
 			if (msg.length > 35) msg = msg.substring(0, 35);
@@ -997,6 +997,13 @@ io.on("connection", async (socket) => {
 			var p = PlayerList.getPlayer(socket.id);
 			p.lastChat = Date.now();
 			PlayerList.setPlayer(socket.id, p);
+			
+			
+  msg = await filtery.clean(msg);
+  var containsProfanity3 = scan(msg).contains;
+  if(containsProfanity3) {
+	  msg = "*".repeat(msg.length);
+  }
 			
 				io.sockets.emit("chat", {
 					msg: filter.clean(msg),
