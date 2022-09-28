@@ -21,8 +21,8 @@ var process = require("process");
 
 var scan = require("./utils/badcheck");
 
-const Filtery = require("purgomalum-swear-filter");
-const filtery = new Filtery();
+// const Filtery = require("purgomalum-swear-filter");
+// const filtery = new Filtery();
 
 var usewebhook = false;
 if(process.env.hasOwnProperty("WEBHOOK_URL")) usewebhook = true;
@@ -381,11 +381,11 @@ app.post("/api/changename", async (req,res) => {
 		return;
 	}
 
-  var containsProfanity2 = await filtery.containsProfanity(newUsername);
-  if(containsProfanity2) {
-    res.status(400).send({error: "Username contains a bad word!\nIf this is a mistake, please contact an admin."});
-    return;
-  }
+  // var containsProfanity2 = await filtery.containsProfanity(newUsername);
+  // if(containsProfanity2) {
+  //   res.status(400).send({error: "Username contains a bad word!\nIf this is a mistake, please contact an admin."});
+  //   return;
+  // }
 
   var containsProfanity3 = scan(newUsername).contains;
   if(containsProfanity3) {
@@ -462,11 +462,11 @@ app.post("/api/signup",checkifMissingFields, async (req, res) => {
 		return;
 	}
 
-  var containsProfanity2 = await filtery.containsProfanity(username);
-  if(containsProfanity2) {
-    res.send({error: "Username contains a bad word!\nIf this is a mistake, please contact an admin."});
-    return;
-  }
+  // var containsProfanity2 = await filtery.containsProfanity(username);
+  // if(containsProfanity2) {
+  //   res.send({error: "Username contains a bad word!\nIf this is a mistake, please contact an admin."});
+  //   return;
+  // }
 
   var containsProfanity3 = scan(username).contains;
   if(containsProfanity3) {
@@ -790,12 +790,12 @@ io.on("connection", async (socket) => {
         } catch (e) {
           name = r.substring(0, 16);
         }
-        try {
-          name = await filtery.clean(name);
-          console.log("filtery", name);
-        } catch (e) {
-          console.log(e);
-        }
+        // try {
+        //   name = await filtery.clean(name);
+        //   console.log("filtery", name);
+        // } catch (e) {
+        //   console.log(e);
+        // }
         if(scan(name).contains > 0) {
           name = "*".repeat(name.length);
         }
@@ -919,12 +919,7 @@ io.on("connection", async (socket) => {
       player.evolution =evo.name;
       player.checkSubEvolutions();
       player.updateValues();
- 
-      if(player.abilityActive) {
-        player.abilityActive = false;
-        player.ability = Date.now() + 10000;
-        socket.emit("ability", false);
-      }
+
       return;
     }
   });
@@ -999,7 +994,7 @@ io.on("connection", async (socket) => {
 			PlayerList.setPlayer(socket.id, p);
 			
 			
-  msg = await filtery.clean(msg);
+  // msg = await filtery.clean(msg);
   var containsProfanity3 = scan(msg).contains;
   if(containsProfanity3) {
 	  msg = "*".repeat(msg.length);
